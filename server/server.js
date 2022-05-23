@@ -9,12 +9,13 @@ const server = http.createServer(app)
 app.use(morgan('dev'))
 app.use(bodyParser.json({
     extended: true
-}))
+}));
 
 app.get('/', (req, res) => {
     res.json({
         'message': 'Hello World'
-})
+    })
+});
 
 app.post('/', (req, res) => {
     console.log(req.body)
@@ -22,4 +23,4 @@ app.post('/', (req, res) => {
 
 server.listen(3000, () => {
     console.log('Server is running')
-})
+});
