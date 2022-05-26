@@ -1,25 +1,19 @@
-const express = require('express')
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const http = require('http')
-const mongoose = require("mongoose");
-const dotenv = require('dotenv')
-dotenv.config();
+import express from 'express'
+import morgan from 'morgan'
+import bodyParser from "body-parser";
+import {User} from "./models/user.model.js";
+import * as http from 'http'
+import mongoose from "mongoose";
+import 'dotenv/config';
 
 const app = express()
 const server = http.createServer(app)
 
-async function connect() {
-    await mongoose.connect(process.env.DATABASE)
-    console.log('Connected to database')
-}
-
-connect().catch(err => console.log(err));
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(morgan('dev'))
-app.use(bodyParser.json({
-    extended: true
-}));
+
+await mongoose.connect(process.env.DATABASE)
 
 
 app.get('/', (req, res) => {
@@ -28,10 +22,12 @@ app.get('/', (req, res) => {
     })
 });
 
-app.post('/', (req, res) => {
-    console.log(req.body)
+app.post('/', async (req, res) => {
+    const {name, email, password} = req.body;
+    const user = await User.create({name, email, password});
+    res.json(user);
 })
 
 server.listen(3000, () => {
-    console.log('Server is running')
+    console.log('Server is running at localhost 3000')
 });
