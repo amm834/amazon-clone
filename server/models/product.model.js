@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-const {Schema} = mongoose.Schema;
+const {Schema} = mongoose;
 
 const ProductSchema = new Schema({
-    category: {type: Schema.Types.ObjectId, ref: 'Category'},
-    owner: {type: Schema.Types.ObjectId, ref: 'Owner'},
+    category: {type: mongoose.Types.ObjectId, ref: 'Category'},
+    owner: {type: mongoose.Types.ObjectId, ref: 'Owner'},
     title: String,
     description: String,
     price: Number,

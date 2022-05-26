@@ -5,6 +5,7 @@ import {User} from "./models/user.model.js";
 import * as http from 'http'
 import mongoose from "mongoose";
 import 'dotenv/config';
+import productRouter from "./routes/product.router.js";
 
 const app = express()
 const server = http.createServer(app)
@@ -15,18 +16,8 @@ app.use(morgan('dev'))
 
 await mongoose.connect(process.env.DATABASE)
 
+app.use('/api', productRouter);
 
-app.get('/', (req, res) => {
-    res.json({
-        'message': 'Hello World'
-    })
-});
-
-app.post('/', async (req, res) => {
-    const {name, email, password} = req.body;
-    const user = await User.create({name, email, password});
-    res.json(user);
-})
 
 server.listen(3000, () => {
     console.log('Server is running at localhost 3000')
