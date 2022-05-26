@@ -1,12 +1,16 @@
 import {Router} from "express";
 import {Product} from "../models/product.model.js";
+import {upload} from "../middlewares/photo_upload.middleware.js";
 
 
 const router = new Router();
 
-router.post('/products', async (req, res) => {
+router.post('/products', upload.single('photo'), async (req, res) => {
     try {
+        // append file
+        req.body.photo = `http://localhost:3000/uploads/${req.file.filename}`
         const {title, description, price, photo, stockQuantity} = req.body;
+
         await Product.create({title, description, price, photo, stockQuantity})
         res.json({
             success: true,

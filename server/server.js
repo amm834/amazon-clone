@@ -10,6 +10,7 @@ import productRouter from "./routes/product.router.js";
 const app = express()
 const server = http.createServer(app)
 
+app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(morgan('dev'))
