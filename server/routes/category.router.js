@@ -1,7 +1,7 @@
-import {Router} from "express";
+import express from "express";
 import {Category} from "../models/category.model.js";
 
-const router = new Router();
+const router = express.Router();
 
 
 router.get('/categories', async (req, res) => {

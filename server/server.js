@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import 'dotenv/config';
 import productRouter from "./routes/product.router.js";
 import categoryRouter from "./routes/category.router.js";
+import ownerRouter from "./routes/owner.router.js";
 
 const app = express()
 const server = http.createServer(app)
@@ -20,6 +21,7 @@ await mongoose.connect(process.env.DATABASE)
 
 app.use('/api', productRouter);
 app.use('/api', categoryRouter);
+app.use('/api', ownerRouter);
 
 
 server.listen(3000, () => {
