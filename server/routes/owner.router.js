@@ -1,5 +1,6 @@
-import express from "express";
+import express, {Router} from "express";
 import {Owner} from "../models/owner.model.js";
+
 
 const router = express.Router();
 router.get('/owners', async (req, res) => {

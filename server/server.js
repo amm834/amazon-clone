@@ -19,6 +19,7 @@ app.use(morgan('dev'))
 
 await mongoose.connect(process.env.DATABASE)
 
+
 app.use('/api', productRouter);
 app.use('/api', categoryRouter);
 app.use('/api', ownerRouter);
