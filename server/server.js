@@ -3,12 +3,14 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const http = require('http')
 const mongoose = require("mongoose");
+const dotenv = require('dotenv')
+dotenv.config();
 
 const app = express()
 const server = http.createServer(app)
 
 async function connect() {
-    await mongoose.connect('mongodb://localhost:27017/amazon_clone')
+    await mongoose.connect(process.env.DATABASE)
     console.log('Connected to database')
 }
 
