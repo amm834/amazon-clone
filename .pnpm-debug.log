@@ -1,0 +1,20 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "shortMessage": "Command failed with exit code 1: C:\\Users\\User\\AppData\\Local\\Temp\\dlx-9280\\create-nuxt-app.CMD admin",
+    "command": "C:\\Users\\User\\AppData\\Local\\Temp\\dlx-9280\\create-nuxt-app.CMD admin",
+    "escapedCommand": "\"C:\\Users\\User\\AppData\\Local\\Temp\\dlx-9280\\create-nuxt-app.CMD\" admin",
+    "exitCode": 1,
+    "failed": true,
+    "timedOut": false,
+    "isCanceled": false,
+    "killed": false,
+    "err": {
+      "name": "pnpm",
+      "message": "Command failed with exit code 1: C:\\Users\\User\\AppData\\Local\\Temp\\dlx-9280\\create-nuxt-app.CMD admin",
+      "stack": "pnpm: Command failed with exit code 1: C:\\Users\\User\\AppData\\Local\\Temp\\dlx-9280\\create-nuxt-app.CMD admin\n    at makeError (C:\\Users\\User\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.28.0\\node_modules\\pnpm\\dist\\pnpm.cjs:42412:17)\n    at handlePromise (C:\\Users\\User\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.28.0\\node_modules\\pnpm\\dist\\pnpm.cjs:42983:33)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async Object.handler (C:\\Users\\User\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.28.0\\node_modules\\pnpm\\dist\\pnpm.cjs:176970:7)\n    at async C:\\Users\\User\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.28.0\\node_modules\\pnpm\\dist\\pnpm.cjs:181595:21\n    at async run (C:\\Users\\User\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.28.0\\node_modules\\pnpm\\dist\\pnpm.cjs:181569:34)\n    at async runPnpm (C:\\Users\\User\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.28.0\\node_modules\\pnpm\\dist\\pnpm.cjs:181780:5)\n    at async C:\\Users\\User\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.28.0\\node_modules\\pnpm\\dist\\pnpm.cjs:181772:7"
+    }
+  }
+}
