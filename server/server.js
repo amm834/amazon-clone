@@ -8,10 +8,12 @@ import 'dotenv/config';
 import productRouter from "./routes/product.router.js";
 import categoryRouter from "./routes/category.router.js";
 import ownerRouter from "./routes/owner.router.js";
+import cors from 'cors'
 
 const app = express()
 const server = http.createServer(app)
 
+app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
