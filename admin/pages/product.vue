@@ -38,8 +38,7 @@ async function createProduct() {
   data.append('owner_id', product.owner_id);
 
   try {
-    const config = useRuntimeConfig();
-    const response = await useBaseFetch('/api/products', {
+    await useBaseFetch('/api/products', {
       method: 'POST',
       body: data,
     })
