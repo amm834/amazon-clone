@@ -24,9 +24,9 @@ router.post('/products', upload.single('photo'), async (req, res) => {
     try {
         // append file
         req.body.photo = `http://localhost:3000/uploads/${req.file.filename}`
-        const {title, description, price, photo, stockQuantity} = req.body;
+        const {title, description, price, photo, stockQuantity, category, owner_id} = req.body;
 
-        await Product.create({title, description, price, photo, stockQuantity})
+        await Product.create({title, description, price, photo, stockQuantity, category, owner_id})
         res.json({
             success: true, message: 'Product successfully saved'
         })
@@ -64,8 +64,8 @@ router.put('/products/:id', upload.single('photo'), async (req, res) => {
             price,
             photo,
             stockQuantity,
-            category: category_id,
-            owner: owner_id,
+            category_id,
+            owner_id,
         }, {
             upsert: true
         });
