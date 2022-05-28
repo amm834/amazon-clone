@@ -1,8 +1,8 @@
 <script setup>
-import useProduct from "../hooks/useProduct";
 
-const {data, products} = await useProduct();
+import useFetchApi from "../hooks/useFetchApi";
 
+const {data} = await useFetchApi('/api/products');
 
 </script>
 

@@ -5,6 +5,11 @@ export default defineNuxtConfig({
         experimental: {
             reactivityTransform: true
         },
+        runtimeConfig: {
+            public: {
+                apiBase: '',
+            }
+        },
         router: {
             mode: 'history'
         },

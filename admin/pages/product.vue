@@ -1,15 +1,27 @@
+<script setup>
+
+import useFetchApi from "../hooks/useFetchApi";
+
+const [{data: categories}, {data: owners}] = await Promise.all([
+  useFetchApi('/api/categories'),
+  useFetchApi('/api/owners')
+]);
+
+
+</script>
+
 <template>
   <main class="container">
     <div class="row my-5">
-      <div class="col-md-6 col-6 offset-md-3">
+      <div class="col-md-6 offset-md-3">
         <h3 class="text-center">Add a new product</h3>
         <!--        Category -->
         <div class="a-spacing-top-medium">
           <label>Category</label>
           <select class="a-select-option text-start">
-            <option value="">1</option>
-            <option value="">1</option>
-            <option value="">1</option>
+            <option v-for="category in categories.categories" :value="category.type" :key="category._id">
+              {{ category.type }}
+            </option>
           </select>
         </div>
 
@@ -17,9 +29,9 @@
         <div class="a-spacing-top-medium">
           <label>Owner</label>
           <select class="a-select-option text-start">
-            <option value="">1</option>
-            <option value="">1</option>
-            <option value="">1</option>
+            <option v-for="owner in owners.owners" :value="owner.type" :key="owner._id">
+              {{ owner.name }}
+            </option>
           </select>
         </div>
 
@@ -39,7 +51,7 @@
         <div class="a-spacing-top-medium">
           <label for="">Description</label>
           <textarea class="form-control a-input-text" rows="10"
-          placeholder="Provide detail such as a product detail"
+                    placeholder="Provide detail such as a product detail"
           ></textarea>
         </div>
 
