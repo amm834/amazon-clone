@@ -49,6 +49,7 @@ async function onDeleteProduct(id, index) {
         <div class="mt-3">
           <NuxtLink :to="{name:'products-id',params: {id:product._id}}" class="a-button-history">Update</NuxtLink>
           <button class="a-button-history ms-2" @click="onDeleteProduct(product._id)">Delete</button>
+
         </div>
       </div>
     </div>
