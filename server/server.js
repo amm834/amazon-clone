@@ -9,6 +9,7 @@ import productRouter from "./routes/product.router.js";
 import categoryRouter from "./routes/category.router.js";
 import ownerRouter from "./routes/owner.router.js";
 import cors from 'cors'
+import authRouter from "./routes/auth.router.js";
 
 const app = express()
 const server = http.createServer(app)
@@ -25,6 +26,7 @@ await mongoose.connect(process.env.DATABASE)
 app.use('/api', productRouter);
 app.use('/api', categoryRouter);
 app.use('/api', ownerRouter);
+app.use('/api', authRouter);
 
 
 server.listen(3000, () => {
