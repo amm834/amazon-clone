@@ -8,7 +8,9 @@ const router = express.Router();
 
 router.get('/products', async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find()
+            .populate('owner_id')
+            .populate('category_id')
         res.json({
             success: true, products
         })

@@ -1,3 +1,10 @@
+<script setup>
+import useFetchApi from "../hooks/useFetchApi";
+
+const {data: products} = await useFetchApi('/api/products')
+console.log(products)
+</script>
+
 <template>
   <main class="listingPage">
     <div class="container-fluid">
@@ -13,7 +20,7 @@
           <!-- End FeaturedProduct Component -->
 
           <!-- Begin Main Results-->
-          <div class="mainResults">
+          <div class="mainResults" v-for="product in products.products" :key="product._id">
             <!-- Begin List Of Results -->
             <ul class="s-result-list">
               <!-- Begin li Result item -->
@@ -35,7 +42,7 @@
                       <!-- Image -->
                       <div class="col-sm-3 text-center">
                         <a href>
-                          <img src="/assets/img/featuredProduct.jpg" style="width:150px" class="img-fluid"
+                          <img :src="product.photo" style="width:150px" class="img-fluid"
                                alt="image"/>
                         </a>
                       </div>
@@ -45,7 +52,7 @@
                         <div class="a-row a-spacing-small">
                           <nuxt-link to="/" class="a-link-normal">
                             <h2 class="a-size-medium">
-                              Product Title
+                              {{ product.title }}
                               <span class="a-letter-space"></span>
                               <span class="a-letter-space"></span>
                               <span class="a-size-small a-color-secondary">Feb, 3 2020</span>
@@ -57,7 +64,9 @@
                         <div class="a-row a-spacing-small">
                           <span class="a-size-small a-color-secondary">by</span>
                           <span class="a-size-small a-color-secondary">
-                            <a href="#" class="a-link-normal a-text-normal">Owner Name</a>
+                            <a href="#" class="a-link-normal a-text-normal">
+                              {{ product?.owner_id?.name ?? 'Owner Name' }}
+                            </a>
                           </span>
                         </div>
 
@@ -76,12 +85,14 @@
                             <!-- Price -->
                             <div class="a-row a-spacing-none">
                               <a href class="a-link-normal a-text-normal">
-                                <span class="a-offscreen">$100</span>
+                                <span class="a-offscreen">$</span>
                                 <span class="a-color-base sx-zero-spacing">
                                   <span class="sx-price sx-price-large">
-                                    <sup class="sx-price-currency">$</sup>
-                                    <span class="sx-price-whole">100</span>
-                                    <sup class="sx-price-fractional">00</sup>
+                                    <sup class="sx-price-currency me-1">$</sup>
+                                    <span class="sx-price-whole">
+                                      {{ product.price }}
+                                    </span>
+                                    <sup class="sx-price-fractional ms-1">00</sup>
                                   </span>&nbsp;&nbsp;
                                 </span>
                               </a>

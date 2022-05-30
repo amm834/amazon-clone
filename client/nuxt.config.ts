@@ -7,5 +7,16 @@ export default defineNuxtConfig({
         'assets/css/default.css',
         'assets/css/font-awesome/css/all.css',
         '@/main.scss',
-    ]
+    ],
+    experimental: {
+        reactivityTransform: true
+    },
+    runtimeConfig: {
+        public: {
+            apiBase: '',
+        }
+    },
+    router: {
+        mode: 'history'
+    },
 })
