@@ -1,5 +1,5 @@
 <template>
   <main>
-    <a class="a-button-buy-again">Hello world</a>
+    Hey there
   </main>
 </template>
