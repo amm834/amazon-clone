@@ -1,3 +1,11 @@
+<script setup>
+import useFetchApi from "../../hooks/useFetchApi";
+import {useRoute} from "nuxt/app";
+
+const route = useRoute()
+const {data: product} = await useFetchApi(`/api/products/${route.params.id}`)
+</script>
+
 <template>
   <main>
     <!-- Breadcrumbs -->
@@ -7,7 +15,9 @@
         <ul class="a-unordered-list a-horizontal a-size-small">
           <li>
             <span class="a-list-item">
-              <a class="a-link-normal a-color-tertiary" href="#">Category</a>
+              <a class="a-link-normal a-color-tertiary" href="#">
+                {{ product.product.category_id.type ?? 'Category' }}
+              </a>
             </span>
           </li>
           <li>
@@ -15,7 +25,9 @@
           </li>
           <li>
             <span class="a-list-item">
-              <a class="a-link-normal a-color-tertiary" href="#">Product Title</a>
+              <a class="a-link-normal a-color-tertiary" href="#">
+                {{ product.product.title }}
+              </a>
             </span>
           </li>
         </ul>
@@ -30,7 +42,7 @@
               <!-- Image -->
               <div class="imgBlock">
                 <div class="eBooksimg">
-                  <img src="#" alt="product image" class="img-fluid"/>
+                  <img :src="product.product.photo" alt="product image" class="img-fluid"/>
                 </div>
               </div>
 
@@ -44,14 +56,16 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                       <div class="smallAuthorImageContainer">
                         <a href="#">
-                          <img src="#" alt="product image" class="img-fluid"/>
+                          <img :src="product.product.photo" alt="product image" class="img-fluid"/>
                         </a>
                       </div>
                     </div>
                     <!-- Author's Name -->
                     <div class="col-xl-4 col-lg-3 col-md-3 col-sm-3 col-3">
                       <div class="authorNameCol">
-                        <a href="#">Product owner name</a>
+                        <a href="#">
+                          {{ product.product.owner_id.name }}
+                        </a>
                       </div>
                     </div>
                     <!-- Author's Follow Button -->
@@ -77,7 +91,7 @@
               <!-- Product Title -->
               <div class="titleDiv">
                 <h1 class="productTitle">
-                  <span class="largeTitle">Product title</span>
+                  <span class="largeTitle"> {{ product.product.title }}</span>
                   <span class="smallTitle">Paperback</span>
                 </h1>
               </div>
@@ -85,7 +99,7 @@
               <div class="bylineinfo">
                 by
                 <a href="#" class="authorName">
-                  Product ower name
+                  {{ product.product.owner_id.name }}
                   <i
                       class="fas fa-chevron-down"
                       style="font-size: 8px !important; color: #555 !important;"
@@ -213,7 +227,7 @@
               </div>
               <!-- Description -->
               <div class="bookDescription">
-                <div class="bookDescriptionInner">Description</div>
+                <div class="bookDescriptionInner">{{ product.product.description }}</div>
               </div>
 
               <!-- Product specification -->
@@ -252,7 +266,7 @@
                     <div class="float-right">
                       <span
                           class="a-size-medium a-color-price offer-price a-text-normal"
-                      >$Prodct Price </span>
+                      >${{ product.product.price }} </span>
                     </div>
                   </div>
                 </div>
@@ -370,7 +384,7 @@
                   <div class="authorContent">
                     <div class="authorImageSingle">
                       <a href="#">
-                        <img src="#" alt="owner image" class="img-fluid"/>
+                        <img :src="product.product.photo" alt="owner image" class="img-fluid"/>
                       </a>
                     </div>
                     <div class="authorFollow">
@@ -385,7 +399,7 @@
                 <div class="col-md-10 col-sm-8 col-8 pl-0">
                   <div class="mainContent">
                     <h3>Biography</h3>
-                    <div id="authorBio">About</div>
+                    <div id="authorBio">{{ product.product.owner_id.about }}</div>
                   </div>
                 </div>
               </div>
