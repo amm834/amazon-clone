@@ -19,4 +19,22 @@ export default defineNuxtConfig({
     router: {
         mode: 'history'
     },
-})
+    auth: {
+        strategies: {
+            local: {
+                token: {
+                    property: 'token',
+                    global: true,
+                },
+                user: {
+                    property: 'user',
+                },
+                endpoints: {
+                    login: {url: '/api/auth/login', method: 'post'},
+                    logout: true,
+                    user: {url: '/api/auth/user', method: 'get'}
+                }
+            }
+        }
+    }
+});

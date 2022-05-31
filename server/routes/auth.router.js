@@ -50,7 +50,7 @@ router.get('/auth/user', verify_token, async (req, res) => {
 })
 
 // login
-router.post('/auth/sign-in', async (req, res) => {
+router.post('/auth/login', async (req, res) => {
 
     try {
         const {email, password} = req.body;
