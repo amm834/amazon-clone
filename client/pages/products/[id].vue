@@ -4,10 +4,13 @@ import {useRoute} from "nuxt/app";
 
 const route = useRoute()
 const {data: product} = await useFetchApi(`/api/products/${route.params.id}`)
+
+
 </script>
 
 <template>
   <main>
+
     <!-- Breadcrumbs -->
     <div class="a-spacing-top-medium"></div>
     <div class="container-fluid">
