@@ -9,8 +9,7 @@ router.post('/auth/sign-up', async (req, res) => {
     const {name, email, password} = req.body
     if (!email || !password) {
         res.json({
-            success: false,
-            message: 'Please enter email or password'
+            success: false, message: 'Please enter email or password'
         })
     } else {
         try {
@@ -21,9 +20,7 @@ router.post('/auth/sign-up', async (req, res) => {
                 if (err) throw new Error(err)
 
                 res.json({
-                    success: true,
-                    token,
-                    message: 'A new user was created'
+                    success: true, token, message: 'A new user was created'
                 })
             })
 
@@ -37,6 +34,23 @@ router.post('/auth/sign-up', async (req, res) => {
 
 router.post('/auth/sign-in', verify_token, (req, res) => {
     res.json(req.body.decoded)
+})
+
+
+// get user profile
+
+router.get('/auth/user', verify_token, async (req, res) => {
+    try {
+        const {decoded} = req.body;
+        const user = await User.findById(decoded._id)
+        res.json({
+            success: true, user
+        })
+    } catch (err) {
+        res.json({
+            success: false, message: err.message,
+        })
+    }
 })
 
 export default router;
