@@ -32,10 +32,6 @@ router.post('/auth/sign-up', async (req, res) => {
     }
 })
 
-router.post('/auth/sign-in', verify_token, (req, res) => {
-    res.json(req.body.decoded)
-})
-
 
 // get user profile
 
@@ -47,8 +43,55 @@ router.get('/auth/user', verify_token, async (req, res) => {
             success: true, user
         })
     } catch (err) {
-        res.json({
+        res.status(500).json({
             success: false, message: err.message,
+        })
+    }
+})
+
+// login
+router.post('/auth/sign-in', async (req, res) => {
+
+    try {
+        const {email, password} = req.body;
+        if (!email || !password) {
+            res.status(500).json({
+                success: false, message: "Provide email and password"
+            })
+        }
+
+        // fetch user
+        const user = await User.findOne({email})
+
+        if (!user) {
+            res.status(500).json({
+                success: false, message: "Wrong email"
+            })
+        }
+
+        const isValid = user.comparePassword(password)
+
+        if (!isValid) {
+            res.status(500).json({
+                success: false, message: "Wrong password"
+            })
+        }
+
+
+        jwt.sign(user.toJSON(), process.env.SECRET, {
+            expiresIn: '1h'
+        }, (err, token) => {
+            if (err) throw new Error(err)
+
+            res.json({
+                success: true, token, message: 'Login success'
+            })
+        })
+
+
+    } catch (err) {
+        res.status(500).json({
+            success: false, message: "Unauthenticated"
         })
     }
 })

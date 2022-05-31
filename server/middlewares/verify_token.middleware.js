@@ -5,7 +5,7 @@ export default function (req, res, next) {
     if (!token) {
         res.json({
             success: false,
-            message: 'Unauthenticated'
+            message: 'Token not found'
         })
     }
 
